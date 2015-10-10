@@ -10,4 +10,6 @@
 
 @interface ManualMasterTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSMutableArray *items;
+
 @end

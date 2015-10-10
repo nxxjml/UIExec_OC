@@ -9,13 +9,16 @@
 #import "MasterTableTableViewController.h"
 
 @interface MasterTableTableViewController ()
+//@property (strong, nonatomic) NSArray *itemss;
 
 @end
 
 @implementation MasterTableTableViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -32,24 +35,39 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [self.items count];
+
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
+    cell.textLabel.text = self.items[indexPath.row];
+    
     
     // Configure the cell...
     
     return cell;
 }
-*/
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"detail" sender: indexPath];
+    
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UIViewController *destVc = segue.destinationViewController;
+    NSIndexPath *senderIndexPath = (NSIndexPath *) sender;
+    
+    destVc.navigationItem.title = [self.items objectAtIndex: senderIndexPath.row];
+}
 
 /*
 // Override to support conditional editing of the table view.

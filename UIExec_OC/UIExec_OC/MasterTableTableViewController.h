@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterTableTableViewController : UITableViewController
+@property (strong, nonatomic) NSMutableArray *items;
 
 @end
